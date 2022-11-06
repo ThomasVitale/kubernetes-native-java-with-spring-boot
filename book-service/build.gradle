@@ -1,0 +1,42 @@
+plugins {
+	id 'org.springframework.boot' version '3.0.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'java'
+}
+
+group = 'com.thomasvitale'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '19'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	// implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	// runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+tasks.named('bootBuildImage') {
+	
+	if (System.getProperty( "os.arch" ).toLowerCase().startsWith('aarch')) {
+		// This builder is only for ARM64 systems.
+		// For more info: https://github.com/thomasvitale/paketo-arm64
+		builder = "ghcr.io/thomasvitale/java-builder-arm64"
+	}
+
+	imageName = "book-service"
+}

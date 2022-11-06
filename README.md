@@ -1,1 +1,1 @@
-# kubernetes-native-java-with-spring-boot
+# Kubernetes Native Java with Spring Boot
