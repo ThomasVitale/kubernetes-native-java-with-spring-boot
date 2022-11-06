@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '3.0.0-SNAPSHOT'
 	id 'io.spring.dependency-management' version '1.1.0'
+	id 'org.graalvm.buildtools.native' version '0.9.17'
 	id 'java'
 }
 
@@ -17,24 +18,15 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-		
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+tasks.named('bootBuildImage') {
+	buildpacks =  ['gcr.io/paketo-buildpacks/bellsoft-liberica:9.9.0-ea', 'gcr.io/paketo-buildpacks/java-native-image']
 }
 
-tasks.named('bootBuildImage') {
-	
-	if (System.getProperty( "os.arch" ).toLowerCase().startsWith('aarch')) {
-		// This builder is only for ARM64 systems.
-		// For more info: https://github.com/thomasvitale/paketo-arm64
-		builder = "ghcr.io/thomasvitale/java-builder-arm64"
-	}
-
-	imageName = "book-service"
+tasks.named('test') {
+	useJUnitPlatform()
 }

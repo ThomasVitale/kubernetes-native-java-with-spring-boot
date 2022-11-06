@@ -1,4 +1,4 @@
-package com.thomasvitale.bookservice;
+package com.thomasvitale.booknative;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-public class BookServiceApplication {
+public class BookNativeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BookServiceApplication.class, args);
+		SpringApplication.run(BookNativeApplication.class, args);
 	}
 
 	@Bean

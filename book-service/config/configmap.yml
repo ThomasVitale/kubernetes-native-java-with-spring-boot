@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: book-config
+data:
+  application.yml: |
+    demo:
+      message: Welcome to the bookshop on Knative!
+    server:
+      shutdown: graceful
+    spring:
+      lifecycle:
+        timeout-per-shutdown-phase: 15s
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: health
