@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.thomasvitale'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '19'
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
@@ -19,9 +19,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	
-	// runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
-	
+		
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 }
