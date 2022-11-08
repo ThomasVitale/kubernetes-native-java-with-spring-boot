@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: book-service
+spec:
+  template:
+    spec:
+      containers:
+        - name: book-service
+          image: ghcr.io/thomasvitale/k8s-java/book-service-arm64
